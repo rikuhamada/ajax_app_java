@@ -25,9 +25,10 @@ public class PostController {
     model.addAttribute("postForm", new PostForm());
     return "posts/index";
   }
-  
+
   @PostMapping("/posts")
   public String savePost(@ModelAttribute("postForm") PostForm form){
+    System.out.println("メソッド呼び出し：" + form);
     PostEntity post = new PostEntity();
     post.setContent(form.getContent());
     postRepository.insert(post);

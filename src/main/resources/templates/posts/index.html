@@ -9,7 +9,7 @@
 <body>
   <h1>AjaxApp</h1>
 
-  <!--             ↓コントローラーへのリクエスト　　　　　 ↓モデル -->
+  <!--             ↓"/posts"コントローラーの呼び出し　　　　　 ↓モデル       　 ↓HTML取得のためのid-->
   <form th:action="@{/posts}" method="post" th:object="${postForm}" id="form">
     <!-- 　　　　　　　　　　　　　　PostFromのcontentフィールドに格納 -->
     <input type="text" th:field="*{content}"/>
