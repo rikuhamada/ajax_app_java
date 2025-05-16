@@ -1,5 +1,6 @@
 package in.tech_camp.ajax_app_java.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,12 +28,16 @@ public class PostController {
   }
 
   @PostMapping("/posts")
-  public String savePost(@ModelAttribute("postForm") PostForm form){
+  //     ↓戻り値としてRepositoryEntityがたのレスポンスをHTTPレスポンスとして返しますよ
+  // 　　　　　　　　　　　　　　　　　　　　　　　↓入力された内容postFormをモデルPostFormに詰め替え、その後DBに保存
+  public ResponseEntity<PostEntity> savePost(@ModelAttribute("postForm") PostForm form){
     System.out.println("メソッド呼び出し：" + form);
     PostEntity post = new PostEntity();
     post.setContent(form.getContent());
     postRepository.insert(post);
-    return "redirect:/";
+    PostEntity resultPost = postRepository.findById(post.getId());
+    // JSにJSONのデータ形式でリターンを返す JSはHTMLに挿入
+    return ResponseEntity.ok(resultPost);
   }
   
 }
