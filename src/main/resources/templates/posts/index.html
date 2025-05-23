@@ -17,8 +17,7 @@
   </form>
 
 <div id="list">
-</div>
-
+  <!-- ページのロード時にDBからのデータ表示 -->
   <div th:each="post : ${postList}">
     <div class="post">
       <div class="post-date">
@@ -29,5 +28,8 @@
       </div>
     </div>
   </div>
+  <!-- この部分にJS空の挿入 -->
+</div>
+
 </body>
 </html>
