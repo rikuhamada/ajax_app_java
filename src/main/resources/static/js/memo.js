@@ -1,5 +1,5 @@
 function post (){
-  const submit =document.getElementById("submit");
+  const submit =document.getElementById("submit")
 
   // submit.addEventListener("click", function(){　※アロー関数タイプのあれ
     // e は「投稿ボタンをクックした」という情報を持ったオブジェクト
@@ -7,45 +7,23 @@ function post (){
       // イベント発生後は優先してJSが処理されpreventがある場合はイベントによるデフォルトの挙動
       // HTMLのthによるリクエスト送信は作動しなくなる
       // イベントの発火の事実を隠滅する感じ
-      e.preventDefault();
-      const form = document.getElementById("form");
+      e.preventDefault()
+      const form = document.getElementById("form")
       // フォームに入力されたデータの取得 form要素を格納したformを格納
-      const formData = new FormData(form);
+      const formData = new FormData(form)
       // JSがサーバーにHTTP通信をおこなうときに利用するオブジェクト
       // HTML→ JS → （サーバー） → コントローラー
-      const XHR = new XMLHttpRequest();
+      const XHR = new XMLHttpRequest()
       // .ope(HTTPメソッド、パス、非同期のon/off)
       // "/posts"コントローラーの呼び出し HTMLのリクエストと一緒
       // レスポンスの値を指定しているためリダイレクトは取得できるが実行しない
       // JS「CTRの言うことは聞くだけ」「実際にどうするかはおいどんが決める」状態
-      XHR.open("POST", "/posts", true);
+      XHR.open("POST", "/posts", true)
       // レスポンスとして返してもらう値の形式をあらかじめ指定
-      XHR.responseType = "json";
+      XHR.responseType = "json"
       // リクエストの送信
-      XHR.send(formData);
-      // リクエスト成功時に実行
-      XHR.onload = () => {
-        // const list = document.getElementById("list");
-        // コントローラー側で処理した後のレスポンスの値
-        const item = XHR.response;
-        console.log(item);
-        // 差し替えする内容を変数htmlに格納
-        //     const html =
-        //         <div class="post">
-        //           <div class="post-date">
-        //             投稿日時：<span th:text="${items.createdAt}"></span>
-        //           </div>
-        //           <div class="post-content">
-        //             <span th:text="${items.content}"></span>
-        //           </div>
-        //         </div>;
-        // //  ↓HTMLの差し替え、対象のid　↓タグのどの部分に
-        //     list.insertAdjacentHTML("afterend", html)
-      };
-      XHR.onerror = () => {
-        console.log("onerror発火！リクエスト失敗");
-      };
-  });
+      XHR.send(formData)
+  })
 
 };
 
